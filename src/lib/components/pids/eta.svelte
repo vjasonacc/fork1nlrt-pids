@@ -69,7 +69,7 @@
               <td>
                 <div class="cars">
                   {#each {length: etaData[i].train_length} as _, i}
-                  <img class="car" src="/img/lrv.png" alt="LRV Car {i}">
+                  <img class="car" src="img/lrv.png" alt="LRV Car {i}">
                   {/each}
                 </div>
               </td>

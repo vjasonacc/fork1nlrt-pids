@@ -1,4 +1,5 @@
-const ApiURL = "https://MTRData.kennymhhui.repl.co/lr?stnId={stn}";
+const ApiURL = "https://MTRData.kennmhhui.repl.co/lr?stnId={stn}";
+const FallbackApiURL = "https://rt.data.gov.hk/v1/transport/mtr/lrt/getSchedule?station_id={stn}";
 
 export class ArrivalEntry {
     route_no: string;
@@ -42,8 +43,8 @@ export class Station {
     }
 }
 
-export function getApiURL(stnId: string): string {
-    return ApiURL.replace("{stn}", stnId);
+export function getApiURL(stnId: string, fallback: boolean = false): string {
+    return (fallback ? FallbackApiURL : ApiURL).replace("{stn}", stnId);
 }
 
 export const RouteList = {

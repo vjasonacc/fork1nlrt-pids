@@ -7,11 +7,20 @@
     let etaData: ArrivalEntry[] = [];
     const DisplayedArrivalRow = 10;
   
-    async function fetchData(stnId: string, targetPlatform: number) {
+    async function fetchData(stnId: string, targetPlatform: number, fallback: boolean = false) {
       if(stnId == null || targetPlatform == null) return;
-      let resp = await fetch(getApiURL(stnId));
+      let resp;
+      try {
+        resp = await fetch(getApiURL(stnId, fallback));
+      } catch {
+        if(!fallback) {
+          console.warn("Cannot fetch data from proxy server, falling back to MTR")
+          return fetchData(stnId, targetPlatform, true);
+        }
+      }
+
       let data = await resp.json();
-      if(data == null) return;
+
       /* Only status 1 should be valid */
       if(data.status != 1) return;
   

@@ -41,10 +41,12 @@
 
 <footer>
     <p>HKTSS 2023</p>
+    <p><a href="https://hktss.github.io/mtr-pids/">願景資訊顯示屏模擬器</a></p>
 </footer>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@600&family=Noto+Serif+HK:wght@600&display=swap');
+
     main {
         font-family: "Myriad Pro", "Noto Sans", "Noto Serif HK";
         background-color: rgba(255, 255, 255, 0.85);
@@ -56,8 +58,15 @@
     }
 
     footer {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
         position: absolute;
         bottom: 0;
+    }
+
+    footer * {
+        margin: 5px;
     }
 
     button, select {

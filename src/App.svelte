@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { fly } from 'svelte/transition';
+    import { fade } from 'svelte/transition';
     import { onMount } from 'svelte';
     import Pids from './lib/components/pids.svelte'
     import Config from './lib/components/config.svelte'
@@ -27,7 +27,7 @@
 
     $: saveData(stnId, platform);
 
-    function parseDataFromQuery() {
+    function parseQuery() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
         if(params["stnId"] != null && params["plat"] != null) {
@@ -39,7 +39,7 @@
 
     onMount(() => {
         getSavedData();
-        parseDataFromQuery();
+        parseQuery();
     });
 </script>
 
@@ -50,7 +50,7 @@
     </div>
 
     {#if showConfig}
-        <div transition:fly="{{ y:25, duration: 200 }}" class="portrait">
+        <div transition:fade="{{ duration: 100 }}" class="portrait">
             <Config bind:stationId={stnId} bind:selectedPlatform={platform} on:click={() => showConfig = false}/>
         </div>
     {/if}
@@ -67,6 +67,7 @@
     .portrait {
         position: absolute;
         height: 100%;
+        overflow-y: hidden;
         left: 0;
         right: 0;
         margin: 0 auto;

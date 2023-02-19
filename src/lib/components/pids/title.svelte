@@ -66,7 +66,7 @@
         font-size: 2.5vh;
         background-color: var(--title-color);
         color: white;
-        padding: 0 10px;
+        padding: 0 1%;
     }
   
     #titlebarTB {
